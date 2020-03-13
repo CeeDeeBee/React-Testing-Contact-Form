@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, getByText } from "@testing-library/react";
+import { render, fireEvent, wait } from "@testing-library/react";
 import ContactForm from "./ContactForm";
 import { act } from "react-dom/test-utils";
 
@@ -36,8 +36,10 @@ test("can submit input", async () => {
         fireEvent.click(submit);
     });
 
-    getByText(/firstInput/i);
-    getByText(/lastInput/i);
-    getByText(/emailInput/i);
-    getByText(/messageInput/i);
+    await wait(() => {
+        getByText(/firstInput/i);
+        getByText(/lastInput/i);
+        getByText(/emailInput/i);
+        getByText(/messageInput/i);
+    });
 });
